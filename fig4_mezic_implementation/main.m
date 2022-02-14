@@ -43,9 +43,10 @@ xdel=Lx/res;
 ydel=Ly/res;
 Nkx = size(muk, 1);
 Nky = size(muk, 2);
+% generate μk (k = [kx,ky])
 for kx = 0:Nkx-1
     for ky = 0:Nky-1
-        
+        % [Not Understand] why hk is calculated like this.
         hk=Lx*Ly; %using lim x->0 sinx/x=1
         if kx ~= 0
             hk = hk * 0.5;
@@ -54,7 +55,7 @@ for kx = 0:Nkx-1
             hk = hk * 0.5;
         end
         hk = sqrt(hk);
-        
+        % discretize domain [0,Lx]X[0,Ly]
         for xRange=0:xdel:Lx-xdel
             for yRange=0:ydel:Ly-ydel
                 muk(kx+1, ky+1) = muk(kx+1, ky+1)+ mu(uint8(xRange*res+1),uint8(yRange*res+1)) *(1/hk)*cos(kx * pi * xRange/Lx) * cos(ky * pi * yRange/Ly);
@@ -73,6 +74,7 @@ AgentSpeed = 5;
 
 colors = ['m','g','b','c'];
 
+% for 5s traj.
 Nsteps = 5000;
 dt = 0.001;
 
@@ -82,15 +84,15 @@ ck_t = zeros(Nk, Nk);
 figure(1); hold on;
 viscircles(obstacles.p',obstacles.r);
 %color inside the circles
-for xRange=0:xdel:Lx-xdel
-         for yRange=0:ydel:Ly-ydel
-            for i=1:obstacles.number
-                if (xRange-obstacles.p(1,i))^2 + (yRange-obstacles.p(2,i))^2 <= obstacles.r(i)^2
-                    scatter(xRange, yRange,2,'r','fill');
-                end
-            end
-         end
-end
+% % % for xRange=0:xdel:Lx-xdel
+% % %      for yRange=0:ydel:Ly-ydel
+% % %         for i=1:obstacles.number
+% % %             if (xRange-obstacles.p(1,i))^2 + (yRange-obstacles.p(2,i))^2 <= obstacles.r(i)^2
+% % %                 scatter(xRange, yRange,2,'r','fill');
+% % %             end
+% % %         end
+% % %      end
+% % % end
 
 axis equal;
 
