@@ -11,7 +11,7 @@ Nky = size(muk, 2);
 Nagents = size(posagents, 1);
 
 % Updating Fourier Coefficients of Coverage Distribution
-for iagent=1:Nagents
+for iagent=1:Nagents % for-loop for robots should be inside loop
     xrel = posagents(iagent, 1) - xmin;
     yrel = posagents(iagent, 2) - ymin;
     for kx = 0:Nkx-1
@@ -54,8 +54,13 @@ Bjy = 0.0; %hadi
             end
             hk = sqrt(hk); %hadi
 
-            Bjx = Bjx + (lambda_k / hk) * (Ck(kx+1, ky+1) - Nagents*time*muk(kx+1, ky+1)) * (-kx * pi/Lx) * sin(kx * pi * xrel/Lx) * cos(ky * pi * yrel/Ly);
-            Bjy = Bjy + (lambda_k / hk) * (Ck(kx+1, ky+1) - Nagents*time*muk(kx+1, ky+1)) * (-ky * pi/Ly) * cos(kx * pi * xrel/Lx) * sin(ky * pi * yrel/Ly);
+            % original codes:
+%             Bjx = Bjx + (lambda_k / hk) * (Ck(kx+1, ky+1) - Nagents*time*muk(kx+1, ky+1)) * (-kx * pi/Lx) * sin(kx * pi * xrel/Lx) * cos(ky * pi * yrel/Ly);
+%             Bjy = Bjy + (lambda_k / hk) * (Ck(kx+1, ky+1) - Nagents*time*muk(kx+1, ky+1)) * (-ky * pi/Ly) * cos(kx * pi * xrel/Lx) * sin(ky * pi * yrel/Ly);
+            % benji-correct:
+            Bjx = Bjx + (lambda_k / hk) * (Ck(kx+1, ky+1)/(Nagents*time) - muk(kx+1, ky+1)) * (-kx * pi/Lx) * sin(kx * pi * xrel/Lx) * cos(ky * pi * yrel/Ly);
+            Bjy = Bjy + (lambda_k / hk) * (Ck(kx+1, ky+1)/(Nagents*time) - muk(kx+1, ky+1)) * (-ky * pi/Ly) * cos(kx * pi * xrel/Lx) * sin(ky * pi * yrel/Ly);
+        
         end
     end
 
