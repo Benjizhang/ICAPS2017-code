@@ -1,3 +1,4 @@
+
 function [posagents, Ck] = SMC_Update(posagents, Ck, muk, time, dt, DomainBounds, AgentSpeed)
 
 Lx = DomainBounds.xmax - DomainBounds.xmin;
