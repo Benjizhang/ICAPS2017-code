@@ -3,7 +3,7 @@
 %% This codes prevents agent-agent collisions.(dynamic-obstacle avoidance)
 %%JUST CLICK RUN! MAKE SURE YOU DON'T START IN AN OBSTACLE REGION
 %% Setting domain bounds
-clear all; close all;
+clear all; close all; clc;
 DomainBounds.xmin = 0.0;
 DomainBounds.xmax = 1.0;
 DomainBounds.ymin = 0.0;

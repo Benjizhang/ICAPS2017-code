@@ -1,6 +1,6 @@
 
 function [posagents, Ck] = SMC_Update(posagents, Ck, muk, time, dt, DomainBounds, AgentSpeed)
-
+% Note: ck_t = Ck/(Nagents*time) 
 Lx = DomainBounds.xmax - DomainBounds.xmin;
 Ly = DomainBounds.ymax - DomainBounds.ymin;
 xmin = DomainBounds.xmin;

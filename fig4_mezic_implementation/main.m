@@ -1,3 +1,4 @@
+clc; clear all; close all;
 %% Setting domain bounds
 DomainBounds.xmin = 0.0;
 DomainBounds.xmax = 1.0;
@@ -58,12 +59,9 @@ for kx = 0:Nkx-1
         % discretize domain [0,Lx]X[0,Ly]
         for xRange=0:xdel:Lx-xdel
             for yRange=0:ydel:Ly-ydel
-                muk(kx+1, ky+1) = muk(kx+1, ky+1)+ mu(uint8(xRange*res+1),uint8(yRange*res+1)) *(1/hk)*cos(kx * pi * xRange/Lx) * cos(ky * pi * yRange/Ly);
-                
+                muk(kx+1, ky+1) = muk(kx+1, ky+1)+ mu(uint8(xRange*res+1),uint8(yRange*res+1)) *(1/hk)*cos(kx * pi * xRange/Lx) * cos(ky * pi * yRange/Ly);                
             end
-        end
-        
-        
+        end        
     end
 end
 
